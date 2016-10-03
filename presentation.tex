@@ -1,0 +1,286 @@
+%\documentclass[11pt,professionalfonts,hyperref={pdftex,pdfpagemode=none,pdfstartview=FitH}]{beamer}
+%\usepackage{times}
+\documentclass[11pt,professionalfonts]{beamer}
+\usefonttheme{serif}
+\usepackage{presentation_packages}
+
+\newcommand{\hilight}[1]{\colorbox{green}{#1}}
+
+\definecolor{mygray}{gray}{0.9}
+\definecolor{RoyalBlue}{rgb}{0.25,0.41,0.88}
+\def\Emph{\textcolor{RoyalBlue}}
+
+\definecolor{tmp}{rgb}{0.804,0.941,1.0}
+\setbeamercolor{numerical}{fg=black,bg=tmp}
+\setbeamercolor{exact}{fg=black,bg=red}
+
+\mode<presentation> 
+{
+  \usetheme{Warsaw}
+  \usefonttheme{serif}
+  \setbeamercovered{transparent}
+}
+
+\setbeamertemplate{footline}%{split theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fill]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{title in head/foot}
+%    \usebeamerfont{title in head/foot}\mypaper\hfill \insertframenumber/\inserttotalframenumber
+    \usebeamerfont{title in head/foot}\hfill \insertframenumber/\inserttotalframenumber
+  \end{beamercolorbox}}%
+  \vskip0pt%
+} \setbeamercolor{box}{fg=black,bg=yellow}
+
+
+\title[Version Control]{\large\bf  Git to work!}
+
+\author{\vspace*{-0.3cm}}
+
+%\institute{\footnotesize
+%{\normalsize Shankar Kulumani}\vspace*{0.2cm}\\
+%  Flight Dynamics and Control Lab \\ 
+%  Dept. of Mechanical and Aerospace Engineering\\ 
+%  The George Washington University \\
+%  Washington, DC\\ \vspace{10pt}
+%  June 4, 2014 \\ \vspace{10pt}
+%  }
+   
+\institute{
+	\footnotesize
+	{\normalsize\bf{Shankar Kulumani}}\\
+	\vspace*{0.2cm}
+  	\bf{Department of Mechanical \& Aerospace Engineering}\\ \vspace*{0.5cm}
+ 	\begin{figure} %figure%
+       	\includegraphics[width=0.75\textwidth]{gw_txh_2cs_pos}
+  	\end{figure}
+}
+\date{}
+
+\begin{document}
+%=======================================================%
+
+\setcounter{framenumber}{-1}
+\begin{frame} %-----------------------------%
+  \titlepage
+\end{frame}   %-----------------------------%
+
+\section*{}
+\subsection*{Version Control}  
+
+\begin{frame} %-----------------------------%
+\frametitle{What is version control?} % small satellites
+
+\begin{block}{Version Control}
+    A system to record or manage changes to files or sets of files over time.
+\end{block}
+
+\pause
+
+\begin{itemize}
+    \item<1-> \Emph{Collaboration} - Teams generate many variations 
+    \item<2-> \Emph{Branching} - Bugs may only exist in specific versions
+    \item<3-> \Emph{Trunk} - Make changes without causing more errors
+\end{itemize}{}
+
+\end{frame}   %-----------------------------%
+
+
+\begin{frame}{What are some examples?}%--------------------------------------------%
+
+\only<1>{
+\begin{figure}
+    \centering
+    \includegraphics[height=0.75\textheight]{figures/Folder_Pizza.png}
+\end{figure}
+}
+
+\only<2->{
+\begin{itemize}
+    \item Multiple computers or hardware (hexrotor)
+    \item ROS
+    \item Navy Boat
+    \item Paper writing (\LaTeX)
+    \item Website
+\end{itemize}
+}
+\end{frame}%--------------------------------------------%
+
+\begin{frame}{Version Control Software}%--------------------------------------------%
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+\begin{itemize}
+    \item Centralized Model
+    \begin{itemize}
+        \item CVS, SVN, others...
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{figures/centralized.png}        
+\end{figure}
+\end{column}
+
+\begin{column}[t]{0.5\textwidth}
+\begin{itemize}
+    \item Distributed Model
+    \begin{itemize}
+        \item Mercurial, Git, others...
+    \end{itemize}
+\end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[height=0.6\textheight]{figures/distributed.png}
+\end{figure}
+
+\end{column}
+\end{columns}
+
+\end{frame}%--------------------------------------------%
+
+\section*{}
+\subsection*{Git}
+
+\begin{frame}{Git history}%--------------------------------------------%
+
+Git began with a bit of creative destruction and fiery controversy...
+
+
+\begin{columns}
+
+\begin{column}[t]{0.5\textwidth}
+\visible<2->{
+\begin{figure}
+    \includegraphics[height=\columnwidth]{figures/Linus_Torvalds.jpeg}
+\end{figure}
+}
+\end{column}
+
+
+\begin{column}[t]{0.5\textwidth}
+\visible<3->{
+\begin{figure}
+    \includegraphics[width=0.3\textheight]{figures/Tux.pdf}\\
+    \includegraphics[width=0.3\textheight]{figures/Git-logo.pdf}
+\end{figure}
+}
+\end{column}
+
+\end{columns}
+\end{frame}%--------------------------------------------%
+
+\begin{frame}{What is Git?} %--------------------------------------------%
+
+\begin{itemize}
+    \item<1-> Track changes in \Emph{TEXT} files!
+    \item<2-> Git stores \Emph{Snapshots} - Saving the current state!
+    \item<3-> Everything is local - no internet needed
+    \item<4-> Integrity - Use of hash functions
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics<2>[width=0.75\textwidth]{figures/deltas.png}
+    \includegraphics<3->[width=0.75\textwidth]{figures/snapshots.png}
+\end{figure}
+
+\end{frame}%--------------------------------------------%
+
+\begin{frame}{Git basics}%--------------------------------------------%
+
+\begin{enumerate}
+    \item Modify files in your diretory
+    \item Stage the files by adding snapshots of the current state
+    \item Commit and permanently store the snapshot to the Git repo
+\end{enumerate}
+
+
+\begin{figure}
+    \centering
+    \includegraphics<1>[width=0.75\textheight]{figures/areas.png}
+\end{figure}
+
+
+
+
+\end{frame}%--------------------------------------------%
+
+\begin{frame}{Installing Git}%--------------------------------------------%
+    \url{https://git-scm.com/downloads}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textheight]{figures/download.png}
+    \end{figure}
+\end{frame}%--------------------------------------------%
+
+\begin{frame}{Git Terminology}%--------------------------------------------%
+\begin{itemize}
+    \item Repo - Project folder that contains all the files
+    \item Commit - ``Revision'' - unique change/version of a file/files
+    \item Branch - Parallel version of a repo
+    \item Remote - Copy of repo that lives on another computer
+    \item Clone - Create a copy from a remote
+    \item Push - Send your changes to a remote
+    \item Fetch - Retrieve the changes from the remote
+    \item Merge - Combine changes between branches
+    \item Pull - Fetch and Merge changes at once
+\end{itemize}
+\end{frame}%--------------------------------------------%
+
+\begin{frame}{Using Git}%--------------------------------------------%
+
+
+We'll practice now!
+
+\begin{enumerate}
+    \item Working alone
+    \item Working with others
+    \item Git and Github
+\end{enumerate}
+
+\texttt{git pull}
+
+\texttt{git push}
+\end{frame}%--------------------------------------------%
+
+
+\begin{frame}{Some helpful tips!}%--------------------------------------------%
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \includegraphics[height=0.75\textheight]{figures/git.png}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+    \item Not the only/best solution!
+    \item For \LaTeX: every sentence on a separate line
+    \item Don't put your repo in Google Drive/Dropbox
+    \item Commit often with \Emph{USEFUL} messages!
+    \item If you get lost... GUI: \texttt{gitk}, \texttt{gitkraken}, or others
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}%--------------------------------------------%
+
+\begin{frame}{Finished!}%--------------------------------------------%
+\begin{figure}
+    \centering
+    \includegraphics[height=0.8\textheight]{figures/tech_support_cheat_sheet.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Useful Resources}
+\begin{itemize}
+    \item \href{https://git-scm.com/}{Git Book}
+    \item \href{http://marklodato.github.io/visual-git-guide/index-en.html}{Visual Git}
+    \item \href{http://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide}{StackOverflow}
+\end{itemize}
+\end{frame}%--------------------------------------------%
+
+\end{document}
+
