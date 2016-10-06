@@ -201,22 +201,22 @@ Track empty dir:
 Compare
 -----------
 
-Compare modified files:
+Compare modified files (working copy and staging area):
 `git diff`
 
 Compare modified files and highlight changes only:
 `git diff --color-words index.html`
 
-Compare modified files within the staging area:
+Compare between staging area and latest commit:
 `git diff --staged`
 
 Compare branches:
 `git diff master..branchname`
 
 Compare commits:
-`git diff 6eb715d`
-`git diff 6eb715d..HEAD`
-`git diff 6eb715d..537a09f`
+`git diff 6eb715d` - Working directory and specific commit
+`git diff 6eb715d..HEAD` - Specific commit and latest commit
+`git diff 6eb715d..537a09f` - Between commits
 
 Compare commits of file:
 `git diff 6eb715d index.html`
