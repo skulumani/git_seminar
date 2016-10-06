@@ -1,14 +1,12 @@
 Using Git
 ===============
 
-Global Settings
+Useful websites
 -----------
 
-Related Setup: https://gist.github.com/hofmannsven/6814278
-
-Related Pro Tips: https://ochronus.com/git-tips-from-the-trenches/
-
 Interactive Beginners Tutorial: http://try.github.io/
+
+Git book: https://git-scm.com/book/en/v2
 
 
 Reminder
@@ -17,7 +15,6 @@ Reminder
 Press `minus + shift + s` and `return` to chop/fold long lines!
 
 Show folder content: `ls -la`
-
 
 Setup
 -----------
@@ -31,7 +28,7 @@ Get the version of Git:
 Initial setup:
 `git config --global user.name "Name"`
 `git config --global user.email email@email.com`
-`git config --global core.editor subl`
+`git config --global core.editor subl` or `nano` 
 `git config --list`
 
 
@@ -68,13 +65,16 @@ Commit changes:
 Add and commit in one step:
 `git commit -am "Message"`
 
+Verbose commit message:
+`git commit -v`
+
 Remove files from Git:
 `git rm index.html`
 
 Remove a previously tracked file:
 `git rm --cached log.out`
 
-Update all changes:
+Update all changes to tracked files:
 `git add -u`
 
 Remove file but do not track anymore:
@@ -112,6 +112,21 @@ Commit to most recent commit:
 
 Update most recent commit message:
 `git commit --amend -m "New Message"`
+
+Log
+-----------
+
+Show commits:
+`git log`
+
+Show oneline-summary of commits:
+`git log --oneline`
+
+Show history of commits as graph:
+`git log --graph`
+
+Show history of commits as graph-summary:
+`git log --oneline --graph --all --decorate`
 
 
 Branch
@@ -153,7 +168,7 @@ True merge (fast forward):
 Merge to master (only if fast forward):
 `git merge --ff-only branchname`
 
-Merge to master (forc a new commit):
+Merge to master (e a new commit):
 `git merge --no-ff branchname`
 
 Stop merge (in case of conflicts):
@@ -182,23 +197,6 @@ Add or edit gitignore:
 
 Track empty dir: 
 `touch dir/.gitkeep`
-
-
-Log
------------
-
-Show commits:
-`git log`
-
-Show oneline-summary of commits:
-`git log --oneline`
-
-Show history of commits as graph:
-`git log --graph`
-
-Show history of commits as graph-summary:
-`git log --oneline --graph --all --decorate`
-
 
 Compare
 -----------
